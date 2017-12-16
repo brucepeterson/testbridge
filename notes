@@ -1,0 +1,13 @@
+
+It is deceptivly simple, but there are considerations on 
+the generalization of the card play.
+
+In most card games the ranking may or may not be:
+ - wild card (first played?) 
+ - highest card of the trump suit (first played, eg Pinochle)
+ - highest card of the led suit
+
+Card comparisons, such as the trump suit (or lack thereof), led card, 
+is dependent upon actions taken AFTER the creation of the card object.
+Using the object __cmp__ function to find the highest card means that 
+the actual function will have to bo overriden by actions at the table.
