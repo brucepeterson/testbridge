@@ -11,3 +11,8 @@ Card comparisons, such as the trump suit (or lack thereof), led card,
 is dependent upon actions taken AFTER the creation of the card object.
 Using the object __cmp__ function to find the highest card means that 
 the actual function will have to bo overriden by actions at the table.
+
+I was hoping to use a compare function for max (key= ), but that is not
+possible because key only operates on one object at at time.  So I
+switched to a function that I pass into the class.
+

@@ -50,6 +50,12 @@ class Card(object):
     def __cmp__(self, other):
         return self.cmp_rank_first(other)
 
+    def __lt__(self, other): #python 3.0
+        return (self.cmp_rank_first(other) < 0) 
+
+    def __eq__(self, other): #python 3.0
+        return self.cmp_rank_first(other) == 0
+        
     def cmp_play(self, other):
         "Trump suit comparison, possibly overwrite for other card games"
         if self.suit() == other.suit():
@@ -162,7 +168,7 @@ class CardArray(object):
         for card in self.hand:
             if card.suit() in self.suits:
                 sortedHand[card.suit()].append(card)
-        for suit, cardsInSuit in sortedHand.iteritems():
+        for suit, cardsInSuit in sortedHand.items():
             cardsInSuit.sort(reverse=True)
         return sortedHand
         
@@ -209,8 +215,8 @@ class BridgeGameState(object):
         alert = range(2)
     
     def bid_phase(self):
-        print "communicate with player", self.turn
-        raw_input("What's your bid")
+        print ("communicate with player", self.turn)
+        input("What's your bid")
         while True:
             numPasses = 0
             while numPasses < 4 :
@@ -247,15 +253,15 @@ class BridgeGameState(object):
 if __name__ == '__main__':
     deck = Deck()
     deck.shuffle()
-    print deck 
+    print (deck) 
     table = []
     for hand in deck.deal(13, 4):
         table.append(CardArray(hand))
     for i, hand in enumerate(table):
-        print i, hand
+        print (i, hand)
     game = BridgeGameState()
     game.suffle_deal()
-    print game._str_show_table()
+    print (game._str_show_table())
     
     game.play()
         
